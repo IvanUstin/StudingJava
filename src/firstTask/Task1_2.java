@@ -36,6 +36,8 @@ public class Task1_2 {
 
             z = (b + sqrt((pow(b, 2) + 4 * a * c))) / (a * 2) - (pow(a, 3) * c) + pow(b, -2);
             System.out.println("\nz = " + z);
+            System.out.println();
+
         }
     }
 }
