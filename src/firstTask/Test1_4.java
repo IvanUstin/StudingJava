@@ -6,19 +6,25 @@ import java.util.Scanner;
 public class Test1_4 {
     public static void main(String[] args) {
 
-//        Scanner s = new Scanner(System.in);
-//        double a, b;
-//        BigDecimal f;
-//
-//        System.out.println("Enter number X kind of nnn.ddd: ");
-//        f = s.nextBigDecimal();
-//
-//        int c = (int) a;
-//        double e = c;
-//        BigDecimal d = e / 1000;
-//        b = (a - c) * 1000 + (double)c / 1000;
-//
-//        System.out.println(c + " " + b);
+        Scanner s = new Scanner(System.in);
 
+        BigDecimal f, e = null;
+
+        System.out.println("Enter number X kind of nnn.ddd: ");
+        f = s.nextBigDecimal();
+
+        int c = f.intValue();
+        double a = f.doubleValue();
+
+        e = e.valueOf(a);
+        e = e.subtract(BigDecimal.valueOf(c));
+        e = e.multiply(BigDecimal.valueOf(1000));
+
+        f = f.valueOf(c);
+        f = f.divide(BigDecimal.valueOf(1000));
+
+        f = f.add(e);
+
+        System.out.println(f);
     }
 }

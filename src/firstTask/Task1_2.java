@@ -13,12 +13,10 @@ public class Task1_2 {
         System.out.print("Hello! Enter variable a: ");
         a = s.nextDouble();
 
-        do {
-            if (a == 0) {
-                System.out.println(" a mustn't be 0, choose another value: ");
-                a = s.nextDouble();
-            }
-        } while (a == 0);
+        while (a == 0) {
+            System.out.println(" a mustn't be 0, choose another value: ");
+            a = s.nextDouble();
+        }
 
         System.out.print("\nOk. Now enter variable b: ");
         b = s.nextDouble();
