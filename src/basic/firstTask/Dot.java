@@ -1,4 +1,4 @@
-package firstTask;
+package basic.firstTask;
 
 class Dot {
     final double x;

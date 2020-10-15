@@ -1,4 +1,4 @@
-package thirdTask;
+package basic.thirdTask;
 
 import java.util.Scanner;
 

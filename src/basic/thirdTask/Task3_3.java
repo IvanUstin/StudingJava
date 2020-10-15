@@ -1,6 +1,4 @@
-package thirdTask;
-
-import java.math.BigInteger;
+package basic.thirdTask;
 
 /*Найти сумму квадратов первых ста чисел.
 

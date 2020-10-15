@@ -1,4 +1,4 @@
-package firstTask;
+package basic.firstTask;
 
 public class Task1_6 {
     public static void main(String[] args) {
