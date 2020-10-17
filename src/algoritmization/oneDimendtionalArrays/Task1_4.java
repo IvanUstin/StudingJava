@@ -9,14 +9,12 @@ public class Task1_4 {
     public static void main(String[] args) {
 
         //Enter numbers
-        double[] array = MethodsFirstTask.createDoubleArray(10,0,10);
+        ArrayFields array =  MethodsFirstTask.createSmartDoubleArray(10,0,10);
 
         //change
-        double max = MethodsFirstTask.maxOfArray(array);
-        double min = MethodsFirstTask.minOfArray(array);
-        MethodsFirstTask.swap(array,min,max);
+        MethodsFirstTask.swap(array.getDoubleArray(),array.min,array.max);
 
         //output the result
-        System.out.println(Arrays.toString(args));
+        System.out.println(Arrays.toString(array.getDoubleArray()));
     }
 }
