@@ -29,25 +29,25 @@ public class MethodsFirstTask {
     }
 
     //to create an int array with all requests to user and min and max values
-    static int[] createSmartIntArray(int N, int x, int y, ArrayFields arrayFields) {
-        System.out.println("Enter numbers separated by a space:");
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-
-        int[] array;
-        if (input.equalsIgnoreCase("test")) {
-            array = MethodsFirstTask.someSmartArrayInt(N, x, y, arrayFields);
-            for (int i = 0; i < N; i++) {
-                System.out.print(i + "\t");
-            }
-            System.out.println();
-            for (int d : array) {
-                System.out.print(d + "\t");
-            }
-            System.out.println();
-        } else array = MethodsFirstTask.stringToArrayOfIntSmart(input, arrayFields);
-        return array;
-    }
+//    static int[] createSmartIntArray(int N, int x, int y, ArrayFields arrayFields) {
+//        System.out.println("Enter numbers separated by a space:");
+//        Scanner scanner = new Scanner(System.in);
+//        String input = scanner.nextLine();
+//
+//        int[] array;
+//        if (input.equalsIgnoreCase("test")) {
+//            array = MethodsFirstTask.someSmartArrayInt(N, x, y, arrayFields);
+//            for (int i = 0; i < N; i++) {
+//                System.out.print(i + "\t");
+//            }
+//            System.out.println();
+//            for (int d : array) {
+//                System.out.print(d + "\t");
+//            }
+//            System.out.println();
+//        } else array = MethodsFirstTask.stringToArrayOfIntSmart(input, arrayFields);
+//        return array;
+//    }
 
     //to create an double array with all requests to user
     static double[] createDoubleArray(int N, double x, double y) {
@@ -64,17 +64,17 @@ public class MethodsFirstTask {
     }
 
     //to create an double array with all requests to user and max and min
-    static double[] createSmartDoubleArray(int N, double x, double y, ArrayFields arrayFields) {
+    static ArrayFields createSmartDoubleArray(int N, double x, double y) {
         System.out.println("Enter numbers separated by a space:");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        double[] array;
+        ArrayFields arrayFields;
         if (input.equalsIgnoreCase("test")) {
-            array = MethodsFirstTask.someSmartArrayRound(N, x, y, arrayFields);
-            System.out.println(Arrays.toString(array));
-        } else array = MethodsFirstTask.stringToArrayOfDoubleSmart(input, arrayFields);
-        return array;
+            arrayFields = MethodsFirstTask.someSmartArrayRound(N, x, y);
+            System.out.println(Arrays.toString(arrayFields.getDoubleArray()));
+        } else arrayFields = MethodsFirstTask.stringToArrayOfDoubleSmart(input);
+        return arrayFields;
     }
 
     // перевести строку с целыми числами в массив этих чисел
@@ -87,23 +87,23 @@ public class MethodsFirstTask {
         return intInput;
     }
 
-    static int[] stringToArrayOfIntSmart(String string, ArrayFields arrayFields) {
+    static ArrayFields stringToArrayOfIntSmart(String string, ArrayFields arrayFields) {
         String[] input = string.split("\\D+");
         int[] intInput = new int[input.length];
+        arrayFields.max = arrayFields.min = intInput[0];
         for (int i = 0; i < input.length; i++) {
             intInput[i] = Integer.parseInt(input[i]);
-            if (i == 0) {
-                arrayFields.max = arrayFields.min = intInput[i];
-            } else {
-                if (intInput[i] > arrayFields.max) {
-                    arrayFields.max = intInput[i];
-                }
-                if (intInput[i] < arrayFields.min) {
-                    arrayFields.min = intInput[i];
-                }
+
+            if (intInput[i] > arrayFields.max) {
+                arrayFields.max = intInput[i];
+            }
+            if (intInput[i] < arrayFields.min) {
+                arrayFields.min = intInput[i];
+
             }
         }
-        return intInput;
+        arrayFields.setIntArray(intInput);
+        return arrayFields;
     }
 
     // сумма чисел из массива, кратных определенному делителю
@@ -127,24 +127,25 @@ public class MethodsFirstTask {
         return doubleInput;
     }
 
-    static double[] stringToArrayOfDoubleSmart(String string, ArrayFields arrayFields) {
+    static ArrayFields stringToArrayOfDoubleSmart(String string) {
         String[] input = string.split("\\s+");
         double[] doubleInput = new double[input.length];
+        ArrayFields arrayFields = new ArrayFields();
+        arrayFields.max = arrayFields.min = doubleInput[0];
         for (int i = 0; i < input.length; i++) {
             doubleInput[i] = Double.parseDouble(input[i]);
-            if (i == 0) {
-                arrayFields.max = arrayFields.min = doubleInput[i];
-            } else {
-                if (doubleInput[i] > arrayFields.max) {
-                    arrayFields.max = doubleInput[i];
-                }
-                if (doubleInput[i] < arrayFields.min) {
-                    arrayFields.min = doubleInput[i];
-                }
+
+            if (doubleInput[i] > arrayFields.max) {
+                arrayFields.max = doubleInput[i];
+            }
+            if (doubleInput[i] < arrayFields.min) {
+                arrayFields.min = doubleInput[i];
             }
         }
-        return doubleInput;
+        arrayFields.setDoubleArray(doubleInput);
+        return arrayFields;
     }
+
 
     //возвращает измененый массив: если элемент массива больше заданного
     // числа, меняет элемент на это число
@@ -190,22 +191,23 @@ public class MethodsFirstTask {
         return array;
     }
 
-    static int[] someSmartArrayInt(int N, int x, int y, ArrayFields arrayFields) {
+    static ArrayFields someSmartArrayInt(int N, int x, int y, ArrayFields arrayFields) {
         int[] array = new int[N];
+        arrayFields.max = arrayFields.min = array[0];
+
         for (int i = 0; i < N; i++) {
             array[i] = (int) (Math.random() * (y - x) + x);
-            if (i == 0) {
-                arrayFields.max = arrayFields.min = array[i];
-            } else {
-                if (array[i] > arrayFields.max) {
-                    arrayFields.max = array[i];
-                }
-                if (array[i] < arrayFields.min) {
-                    arrayFields.min = array[i];
-                }
+
+            if (array[i] > arrayFields.max) {
+                arrayFields.max = array[i];
             }
+            if (array[i] < arrayFields.min) {
+                arrayFields.min = array[i];
+            }
+
         }
-        return array;
+        arrayFields.setIntArray(array);
+        return arrayFields;
     }
 
     // возвращает случайный округленый массив
@@ -218,22 +220,23 @@ public class MethodsFirstTask {
         return array;
     }
 
-    static double[] someSmartArrayRound(int N, double x, double y, ArrayFields arrayFields) {
+    static ArrayFields someSmartArrayRound(int N, double x, double y) {
         double[] array = new double[N];
+        ArrayFields arrayFields = new ArrayFields();
+        arrayFields.max = arrayFields.min = array[0];
         for (int i = 0; i < N; i++) {
             array[i] = Math.round(Math.random() * (y - x) + x);
-            if (i == 0) {
-                arrayFields.max = arrayFields.min = array[i];
-            } else {
-                if (array[i] > arrayFields.max) {
-                    arrayFields.max = array[i];
-                }
-                if (array[i] < arrayFields.min) {
-                    arrayFields.min = array[i];
-                }
+
+            if (array[i] > arrayFields.max) {
+                arrayFields.max = array[i];
             }
+            if (array[i] < arrayFields.min) {
+                arrayFields.min = array[i];
+            }
+
         }
-        return array;
+        arrayFields.setDoubleArray(array);
+        return arrayFields;
     }
 
     //Quantity of positive numbers of array
