@@ -3,7 +3,7 @@ package algoritmization.oneDimendtionalArrays;
 public class ArrayFields {
     public double max;
     public double min;
-    double[] doubleArray;
+    public double[] doubleArray;
 
     public double[] getDoubleArray() {
         return doubleArray;
