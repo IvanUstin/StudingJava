@@ -183,7 +183,8 @@ public class MethodsFirstTask {
 
     // возвращает случайный целочисленный массив
     // с количеством элементов N со значением в границах (x;y)
-    static int[] someArrayInt(int N, int x, int y) {
+
+    public static int[] someArrayInt(int N, int x, int y) {
         int[] array = new int[N];
         for (int i = 0; i < N; i++) {
             array[i] = (int) (Math.random() * (y - x) + x);

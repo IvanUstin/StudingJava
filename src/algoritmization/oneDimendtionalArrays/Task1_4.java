@@ -12,7 +12,7 @@ public class Task1_4 {
         ArrayFields array =  MethodsFirstTask.createSmartDoubleArray(10,0,10);
 
         //change
-        MethodsFirstTask.swap(array.getDoubleArray(),array.min,array.max);
+        MethodsFirstTask.swap(array.getDoubleArray(),array.getMin(),array.getMax());
 
         //output the result
         System.out.println(Arrays.toString(array.getDoubleArray()));
