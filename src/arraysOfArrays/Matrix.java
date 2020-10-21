@@ -7,6 +7,7 @@ public class Matrix<T extends Number> {
     private int count;
     private int column;
     private Set<Integer> set;
+    private List<ArrayList> tMatrix;
 
     public Set<Integer> getSet() {
         return set;
@@ -39,8 +40,6 @@ public class Matrix<T extends Number> {
     public void settMatrix(List<ArrayList> tMatrix) {
         this.tMatrix = tMatrix;
     }
-
-    private List<ArrayList> tMatrix;
 
     public Matrix() {
     }

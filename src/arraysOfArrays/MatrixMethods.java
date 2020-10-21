@@ -166,6 +166,26 @@ public class MatrixMethods {
         return max;
     }
 
+    //find rows in which specified number repeats certain times
+    public static <T extends Number> Set<Integer> specialRows(Matrix<T> matrix, T value, int repeatTimes) {
+        Set<Integer> setRows = new HashSet<>();
+        int rowIndex = 0;
+        for (T[] rows : matrix.getMatrix()) {
+            int times = 0;
+            for (T element : rows) {
+                if (element.equals(value)) {
+                    times++;
+                }
+                if (times == repeatTimes) {
+                    setRows.add(rowIndex);
+                    break;
+                }
+            }
+            rowIndex++;
+        }
+        return setRows;
+    }
+
 
 
     //return the set of columns, in which the first element more than the last
