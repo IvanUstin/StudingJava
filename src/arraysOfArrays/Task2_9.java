@@ -17,7 +17,7 @@ public class Task2_9 {
         Matrix<Integer> sumMatrix = new Matrix<>();
         sumMatrix.setMatrix(MatrixMethods.newIntegerMatrix(1,numberOfColumns,0,0));
         Integer[][] rowSumMatrix = sumMatrix.getMatrix();
-        rowSumMatrix[0] = MatrixMethods.sumOfColumnElements(matrix);
+        rowSumMatrix[0] = MatrixMethods.sumOfColumnElementsWithMax(matrix);
         System.out.println("Sum:");
         System.out.println(sumMatrix);
         System.out.println("The " + (matrix.getSet().size() > 1 ? "columns" : "column")
