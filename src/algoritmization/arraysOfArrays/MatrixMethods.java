@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -301,8 +301,8 @@ public class MatrixMethods {
         matrix.setMatrix(currentMatrix);
     }
 
-
     public static <T extends Number> void quickSort(T[] array, int fst, int lst, boolean isAscending) {
+        Matrix.setSuperCount(Matrix.getSuperCount()+1);
         if (fst >= lst) {
             return;
         }
@@ -328,6 +328,7 @@ public class MatrixMethods {
         quickSort(array, fst, j, isAscending);
         quickSort(array, i, lst, isAscending);
     }
+
 
     public static Integer[][] newBinaryMatrix(int rows, int columns) {
         Integer[][] matrix = new Integer[rows][columns];
@@ -383,10 +384,6 @@ public class MatrixMethods {
         }
         return matrix;
     }
-
-
-    //return the set of columns, in which the first element more than the last
-//    public static Set<List<T>>
 
 
 }

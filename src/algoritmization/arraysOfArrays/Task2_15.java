@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 /*Найдите наибольший элемент матрицы и
 заменить все нечетные элементы на него.

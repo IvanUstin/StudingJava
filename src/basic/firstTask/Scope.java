@@ -32,8 +32,8 @@ public class Scope {
     //Быстрая проверка со случайными точками
     public void scope(Dot dot) {
 
-        double x = dot.x;
-        double y = dot.y;
+        double x = dot.getX();
+        double y = dot.getY();
 
         if (y < -3 || y > 4) System.out.println("false");
         else if (x >= -2 && x <= 2) System.out.println("true");

@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 /*Сформировать квадратную матрицу порядка n по заданному образцу(n - четное):
  */

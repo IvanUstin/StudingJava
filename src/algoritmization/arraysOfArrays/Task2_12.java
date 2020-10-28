@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 /*Отсортировать строки матрицы по возрастанию и убыванию значений элементов.
 

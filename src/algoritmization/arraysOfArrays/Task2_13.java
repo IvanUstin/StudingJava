@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 /* Отсортировать столбцы матрицы по возрастанию и убыванию
 

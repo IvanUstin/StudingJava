@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 import java.util.Arrays;
 import java.util.Scanner;

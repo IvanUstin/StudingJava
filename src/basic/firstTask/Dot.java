@@ -1,8 +1,16 @@
 package basic.firstTask;
 
-class Dot {
-    final double x;
-    final double y;
+public class Dot {
+    final private double x;
+    final private double y;
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
 
     Dot(double x, double y) {
         this.x = x;
@@ -16,7 +24,7 @@ class Dot {
         double x = Math.random() * i - i / 2;
         double y = Math.random() * i - i / 2;
         Dot dot = new Dot(x,y);
-        System.out.println("x = " + x + "; y = " + y + ";");
+//        System.out.println("x = " + x + "; y = " + y + ";");
         return dot;
     }
 }
