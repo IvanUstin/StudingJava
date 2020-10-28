@@ -8,7 +8,7 @@ public class MethodsFirstTask {
     //                               1
 
     //to create an int array with all requests to user
-    static int[] createIntArray(int N, int x, int y) {
+    public static int[] createIntArray(int N, int x, int y) {
         System.out.println("Enter numbers separated by a space:");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -192,6 +192,14 @@ public class MethodsFirstTask {
         return array;
     }
 
+    public static Integer[] someIntegerArray(int N, int x, int y) {
+        Integer[] array = new Integer[N];
+        for (int i = 0; i < N; i++) {
+            array[i] = (int) (Math.random() * (y - x) + x);
+        }
+        return array;
+    }
+
     static ArrayFields someSmartArrayInt(int N, int x, int y, ArrayFields arrayFields) {
         int[] array = new int[N];
         arrayFields.max = arrayFields.min = array[0];
@@ -288,7 +296,7 @@ public class MethodsFirstTask {
     }
 
     //Min of double array
-    static double minOfArray(double[] array) {
+    public static double minOfArray(double[] array) {
         double min = array[0];
         for (double i : array) {
             if (i < min) min = i;
@@ -300,6 +308,15 @@ public class MethodsFirstTask {
     static int minOfArray(int[] array) {
         int min = array[0];
         for (int i : array) {
+            if (i < min) min = i;
+        }
+        return min;
+    }
+
+    //Min of Integer array
+    public static int minOfArray(Integer[] array) {
+        int min = array[0];
+        for (Integer i : array) {
             if (i < min) min = i;
         }
         return min;

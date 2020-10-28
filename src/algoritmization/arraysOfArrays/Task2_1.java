@@ -1,7 +1,4 @@
-package arraysOfArrays;
-
-import java.util.Arrays;
-import java.util.List;
+package algoritmization.arraysOfArrays;
 
 /* Дана матрица. Вывести на экран все нечетные столбцы,
  у которых первый элемент больше последнего.

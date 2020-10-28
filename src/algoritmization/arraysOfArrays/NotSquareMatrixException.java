@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 /* Square
 

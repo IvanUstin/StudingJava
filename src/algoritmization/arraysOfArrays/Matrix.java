@@ -1,12 +1,46 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 import java.util.*;
 
-public class Matrix<T extends Number> {
+public class Matrix <T extends Number> {
     private T[][] matrix;
     private int count;
     private int column;
     private Set<Integer> set;
+    private List<List> tMatrix;
+    private static int superCount;
+    private T max;
+
+    Matrix (int rows, int column, int min, int maxi) {
+        Integer[][] matrix = new Integer[rows][column];
+        setMax((T)(Integer)min);
+        for (Integer[] row : matrix) {
+            for (int i = 0; i < row.length; i++) {
+                row[i] = (int) (Math.random() * (maxi - min + 1) + min);
+                if (row[i] > getMax().intValue()) {
+                    setMax((T)row[i]);
+                }
+            }
+        }
+        setMatrix((T[][])matrix);
+    }
+
+    public T getMax() {
+        return max;
+    }
+
+    public void setMax(T max) {
+        this.max = max;
+    }
+
+    public static int getSuperCount() {
+        return superCount;
+    }
+
+    public static void setSuperCount(int superCount) {
+        Matrix.superCount = superCount;
+    }
+
 
     public Set<Integer> getSet() {
         return set;
@@ -32,15 +66,13 @@ public class Matrix<T extends Number> {
         this.count = count;
     }
 
-    public List<ArrayList> gettMatrix() {
+    public List<List> gettMatrix() {
         return tMatrix;
     }
 
-    public void settMatrix(List<ArrayList> tMatrix) {
+    public void settMatrix(List<List> tMatrix) {
         this.tMatrix = tMatrix;
     }
-
-    private List<ArrayList> tMatrix;
 
     public Matrix() {
     }
@@ -67,11 +99,10 @@ public class Matrix<T extends Number> {
             }
             return matrixString.toString();
         } else {
-            StringBuilder matrixString = new StringBuilder("");
-            for (ArrayList a : tMatrix) {
-                matrixString.append(a + "\n");
+            for (List a : tMatrix) {
+                System.out.println(a);
             }
-            return matrixString.toString();
+            return "";
         }
     }
 
@@ -87,6 +118,16 @@ public class Matrix<T extends Number> {
             columnArray.add(ts[column]);
         }
         return columnArray;
+    }
+
+    public Integer[] getColumnOfMatrixArray (int row) {
+        Integer[] column = new Integer[matrix.length];
+        int count = 0;
+        for (T[] rows : matrix) {
+            column[count] = rows[row].intValue();
+            count++;
+        }
+        return column;
     }
 
 

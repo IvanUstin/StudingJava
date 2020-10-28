@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 /*Дана квадратная матрица. Вывести на экран элементы,
 стоящие на диагонали.

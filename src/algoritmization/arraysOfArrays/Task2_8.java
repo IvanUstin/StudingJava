@@ -1,4 +1,4 @@
-package arraysOfArrays;
+package algoritmization.arraysOfArrays;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class Task2_8 {
 
         //show the next matrix
         Matrix<Integer> matrix = new Matrix<>();
-        matrix.setMatrix(MatrixMethods.newIntegerMatrix(10,number_of_columns,0,10));
+        matrix.setMatrix(MatrixMethods.newIntegerMatrix(3,number_of_columns,0,10));
         System.out.println(matrix);
 
         //request column's index of the matrix, which will be swapped
