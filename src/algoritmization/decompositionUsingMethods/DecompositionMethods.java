@@ -4,7 +4,9 @@ import algoritmization.arraysOfArrays.Matrix;
 import algoritmization.oneDimendtionalArrays.MethodsFirstTask;
 import basic.firstTask.Dot;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //Methods of "Decomposition Using Methods" Task
@@ -233,5 +235,91 @@ public class DecompositionMethods {
             sumOfDigits += Math.pow(Integer.parseInt("" + num.charAt(i)),num.length());
         }
         return  sumOfDigits;
+    }
+
+    public static List<Integer> ascendingDigits(int numberOfDigits) {
+        List<Integer> ascendingDigits = new ArrayList<>();
+        if (numberOfDigits < 2 || numberOfDigits > 9) {
+            ascendingDigits.add(-1);
+            return ascendingDigits;
+        }
+        Integer[] number = number(numberOfDigits);
+        for (int i = numberOfDigits - 2; i >= 0; i--) {
+            while (number[numberOfDigits - 1] <= 9) {
+                ascendingDigits.add(fullNumber(number));
+                number[numberOfDigits - 1]++;
+            }
+            if (number[i] < 10 - numberOfDigits + i) {
+                number[i]++;
+                for (int j = i + 1; j < numberOfDigits; j++) {
+                    number[j] = number[j-1] + 1;
+                }
+                i = numberOfDigits - 1;
+            }
+        }
+        return ascendingDigits;
+    }
+
+    public static Integer[] number(int numberOFDigits) {
+        Integer[] number = new Integer[numberOFDigits];
+        for (int i = 0; i < numberOFDigits; i++) {
+            number[i] = i + 1;
+        }
+        return number;
+    }
+
+    public static Integer fullNumber(Integer[] array) {
+        int fullNumber = 0;
+        for (int i = array.length; i > 0; i--) {
+            fullNumber += array[i - 1] * (int) Math.pow(10, array.length - i);
+        }
+        return fullNumber;
+    }
+
+    public static BigDecimal sumOfNumbersWithUnevenDigits (int numberOfDigits) {
+        //initialise first number
+        Integer[] firstNumber = new Integer[numberOfDigits];
+        Arrays.fill(firstNumber, 1);
+        int number = fullNumber(firstNumber);
+
+        //define the sum
+        BigDecimal sum = new BigDecimal(0);
+        do {
+            sum = sum.add(BigDecimal.valueOf(number));
+            number += 2;
+        } while (number < (int) Math.pow(10,numberOfDigits));
+        return sum;
+    }
+
+    //quantity of even digits of the number
+    public static int quantityOfEvenDigits (BigDecimal number) {
+        String num = number.toString();
+        int quantity = 0;
+        for (int i = 0; i < num.length(); i++) {
+            if (Integer.parseInt("" + num.charAt(i)) % 2 == 0) {
+                quantity++;
+            }
+        }
+        return quantity;
+    }
+
+    public static Integer sumOfDigits (Integer number) {
+        number = Math.abs(number);
+        String num = Integer.toString(number);
+        int sumOfDigits = 0;
+        for (char ch :
+                num.toCharArray()) {
+            sumOfDigits += Integer.parseInt("" + ch);
+        }
+        return sumOfDigits;
+    }
+
+    public static Integer quantityOfIterations (Integer number) {
+        int quantity = 0;
+        while (number > 0) {
+            number -= sumOfDigits(number);
+            quantity++;
+        }
+        return quantity;
     }
 }

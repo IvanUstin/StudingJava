@@ -8,13 +8,19 @@ import java.util.List;
  */
 public class Task4_15 {
     public static void main(String[] args) {
+        List<Integer> ascendingDigits = DecompositionMethods.ascendingDigits(1);
+        System.out.println(ascendingDigits);
 
-    }
-
-    public static List<Integer> ascendingDigits (int numberOfDigits) {
-        StringBuilder number = new StringBuilder("");
-        for (int i = 1; i < 10 - numberOfDigits; i++) {
-
-        }
+        System.out.println(ascendingDigits.size());
+        /* the dependence of the quantity of numbers on the number of digits:
+        2 - 36
+        3 - 84
+        4 - 126
+        5 - 126
+        6 - 84
+        7 - 36
+        8 - 9
+        9 - 1
+         */
     }
 }
