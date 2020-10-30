@@ -78,7 +78,7 @@ public class MethodsFirstTask {
     }
 
     // перевести строку с целыми числами в массив этих чисел
-    static int[] stringToArrayOfInt(String string) {
+    public static int[] stringToArrayOfInt(String string) {
         String[] input = string.split("\\D+");
         int[] intInput = new int[input.length];
         for (int i = 0; i < input.length; i++) {
