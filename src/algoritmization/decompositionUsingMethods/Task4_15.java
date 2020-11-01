@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Task4_15 {
     public static void main(String[] args) {
-        List<Integer> ascendingDigits = DecompositionMethods.ascendingDigits(1);
+        List<Integer> ascendingDigits = DecompositionMethods.ascendingDigits(4);
         System.out.println(ascendingDigits);
 
         System.out.println(ascendingDigits.size());

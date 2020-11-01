@@ -1,6 +1,5 @@
 package algoritmization.decompositionUsingMethods;
 
-import algoritmization.arraysOfArrays.Matrix;
 import algoritmization.oneDimendtionalArrays.MethodsFirstTask;
 import basic.firstTask.Dot;
 
@@ -38,6 +37,24 @@ public class DecompositionMethods {
         return commonFactor;
     }
 
+    public static int NOD (int a, int b) {
+        if (a < b) {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+        while (b != 0) {
+            int tmp = b;
+            b = a % b;
+            a = tmp;
+        }
+        return a;
+    }
+
+    public static int NOK (int a, int b) {
+        return a * b / NOD(a,b);
+    }
+
     // return the greatest common divisor of four numbers
     public static int divisorOfNumbers(Integer... number) {
         int divisor = MethodsFirstTask.minOfArray(number);
@@ -58,7 +75,7 @@ public class DecompositionMethods {
 
     //return the area of current SixAngle with side a
     public static double correctSixAngleArea(double a, int numberOfEdges) {
-        return (numberOfEdges / 2 * a * a * Math.sin(Math.toRadians(360 / numberOfEdges)));
+        return ((a / 2) * a * Math.tan(Math.toRadians((180 - (360/numberOfEdges))/2)) * numberOfEdges / 2);
     }
 
     //generate certain number of dots with random coordinates in range of "Scope"
@@ -71,7 +88,7 @@ public class DecompositionMethods {
     }
 
     //find dots with the longest distance between
-    public static void fareAwayDots(List<Dot> listOfDots) {
+    public static Distance fareAwayDots(List<Dot> listOfDots) {
         double distance = 0;
         int firstDotIndex = 0;
         int secondDotIndex = 0;
@@ -85,12 +102,12 @@ public class DecompositionMethods {
                     firstDotIndex = i;
                     secondDotIndex = j;
                 }
-//                System.out.println(i + " " + j + " " + nextDistance);
             }
         }
-        System.out.printf("The longest distance is %f\nbetween dot %d ,\nx = %f\ny = %f\nand dot %d\nx = %f\ny = %f",
-                distance, firstDotIndex, listOfDots.get(firstDotIndex).getX(), listOfDots.get(firstDotIndex).getY(),
-                secondDotIndex, listOfDots.get(secondDotIndex).getX(), listOfDots.get(secondDotIndex).getY());
+        return new Distance(listOfDots.get(firstDotIndex),listOfDots.get(secondDotIndex),distance);
+//        System.out.printf("The longest distance is %f\nbetween dot %d ,\nx = %f\ny = %f\nand dot %d\nx = %f\ny = %f",
+//                distance, firstDotIndex, listOfDots.get(firstDotIndex).getX(), listOfDots.get(firstDotIndex).getY(),
+//                secondDotIndex, listOfDots.get(secondDotIndex).getX(), listOfDots.get(secondDotIndex).getY());
     }
 
     //return the penultimate element of array
@@ -101,11 +118,9 @@ public class DecompositionMethods {
             if (element.doubleValue() > max.doubleValue()) {
                 preMax = max;
                 max = element;
+            } else if (element.doubleValue() > preMax.doubleValue()) {
+                preMax = element;
             }
-        }
-        T lastCheck = newArray[newArray.length-1];
-        if (lastCheck.doubleValue() < max.doubleValue() && lastCheck.doubleValue() > preMax.doubleValue()) {
-            return lastCheck;
         }
         return preMax;
     }
@@ -143,41 +158,32 @@ public class DecompositionMethods {
     }
 
     //area of quadrangle
-    public static double quadrangleAreaBySides(double a, double b, double c, double d) {
-        double max = Math.max(Math.max(a,b),Math.max(c,d));
-        double perimeter = a + b + c + d;
-        double p = perimeter/2;
-        if ( max > perimeter - max) {        // check if arguments are wrong
-            return -1.;
-        } else {
-            return Math.sqrt((p - a) * (p - b) * (p - c) * (p - d));
-        }
+    public static double quadrangleAreaBySides(double X, double Y, double c, double d) {
+        double straightTriangleArea = X * Y / 2;
+        double hypotenuse = Math.sqrt(Math.pow(X,2) + Math.pow(Y,2));
+        double p = (c + d + hypotenuse) / 2;                                   // half of perimeter
+        double anotherTriangleArea = Math.sqrt(p * (p - hypotenuse) * (p - c) * (p - d));
+        return straightTriangleArea + anotherTriangleArea;
     }
 
     //return array with digits of current number
     public static int[] digitsOfNumber (int number) {
-        String stringNumber = "" + number;
+        String stringNumber = Integer.toString(number);
         int[] array = new int[stringNumber.length()];
         for (int i = 0; i < array.length; i++) {
-            array[i] = Integer.parseInt("" + stringNumber.charAt(i));
+            array[i] = Integer.parseInt(String.valueOf(stringNumber.charAt(i)));
         }
         return array;
     }
 
     //which number is longer
-    public static <T extends Number,V extends Number,E extends Number> E longestNumber (T a, V b) {
-        String fst = a instanceof Integer ? "" + a.intValue() : "" + a.doubleValue();
-        String snd = b instanceof Integer ? "" + b.intValue() : "" + b.doubleValue();
-        int one = a instanceof Integer ? fst.length() : fst.length()-1;
-        int two = b instanceof Integer ? snd.length() : snd.length()-1;
-        if (one >= two) {
-            return (E)a;
-        } else {
-            return (E)b;
-        }
+    public static <T extends Number> T longestNumber (T a, T b) {
+        String fst = String.valueOf(a).replace(".","");
+        String snd = String.valueOf(b).replace(".","");
+        return (fst.length() >= snd.length()) ? a : b;
     }
 
-    public static double[] sumOfDigitsArray(int K, int N, int arrayLength) {
+    public static double[] sumOfDigitsArray(int K, int limit, int arrayLength) {
         double[] array = new double[arrayLength];
         for (int i = 0; i < arrayLength; i++) {
             StringBuilder number = new StringBuilder("");
@@ -191,7 +197,7 @@ public class DecompositionMethods {
             number.append(sumOfDigits);
             double Digits = Double.parseDouble(number.toString());
             int movePoint = 0;
-            while (Digits > N) {
+            while (Digits > limit) {
                 Digits /= 10;
                 movePoint++;
             }
@@ -202,17 +208,31 @@ public class DecompositionMethods {
     }
 
     //shows numbers with defined difference in the specified range
-    public static void twins (int n, int difference) {
-        for (int i = n; i <= n*2 - difference; i++) {
-            System.out.printf("%d and %d\n",i,i+difference);
+    public static void primeTwins(int n) {
+        int previousPrime = 0;
+        for (int i = n; i <= n * 2; i++) {
+            if (isPrime(i) && i - previousPrime == 2) {
+                System.out.printf("%d and %d are twins-prime\n",previousPrime,i);
+                previousPrime = i;
+            } else if (isPrime(i)) {
+                previousPrime = i;
+            }
         }
+    }
+
+    public static boolean isPrime (int number) {
+        if (number < 2) return false;
+        for (int i = 2; i <= number/2; i++) {
+            if (number % i == 0) return false;
+        }
+        return true;
     }
 
     //row of armstrong numbers
     public static List<Integer> armstrongNumbers (int toNumber) {
         List<Integer> armstrongNumbers = new ArrayList<>();
         for (int i = 1; i <= toNumber; i++) {
-            if (correctConditionOfArmstrongNumber(i) == i) {
+            if (isArmstrongNumber(i)) {
                 armstrongNumbers.add(i);
             }
         }
@@ -220,7 +240,7 @@ public class DecompositionMethods {
     }
 
     public static int conditionOfArmstrongNumber(int number) {
-        String num = "" + number;
+        String num = String.valueOf(number);
         int sumOfDigits = 0;
         for (int i = 0; i < num.length(); i++) {
             sumOfDigits += Integer.parseInt("" + num.charAt(i));
@@ -229,12 +249,16 @@ public class DecompositionMethods {
     }
 
     public static int correctConditionOfArmstrongNumber(int number) {
-        String num = "" + number;
+        String num = String.valueOf(number);
         int sumOfDigits = 0;
         for (int i = 0; i < num.length(); i++) {
             sumOfDigits += Math.pow(Integer.parseInt("" + num.charAt(i)),num.length());
         }
         return  sumOfDigits;
+    }
+
+    public static boolean isArmstrongNumber (int number) {
+        return correctConditionOfArmstrongNumber(number) == number;
     }
 
     public static List<Integer> ascendingDigits(int numberOfDigits) {
