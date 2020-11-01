@@ -1,2 +1,9 @@
 # Project exclude paths
 /out/
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/StudingJava.iml
+/src/algoritmization/oneDimendtionalArrays/test.java
+/.idea/vcs.xml
+/src/basic/firstTask/WrongCode.java
