@@ -9,6 +9,6 @@ package algoritmization.decompositionUsingMethods;
 public class Task4_13 {
     public static void main(String[] args) {
 
-        DecompositionMethods.twins(8,4);
+        DecompositionMethods.twins(40,2);
     }
 }

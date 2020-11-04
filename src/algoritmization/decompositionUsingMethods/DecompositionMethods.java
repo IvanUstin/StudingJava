@@ -346,4 +346,17 @@ public class DecompositionMethods {
         }
         return quantity;
     }
+
+    public static void twins (int firstNumber, int distance) {
+        int previousPrime = 0;
+        for (int i = firstNumber; i <= firstNumber*2; i++) {
+            boolean isPrime = isPrime(i);
+            if (isPrime && i - previousPrime == distance) {
+                System.out.printf("%s and %s are twins-prime\n",previousPrime,i);
+                previousPrime = i;
+            } else if (isPrime) {
+                previousPrime = i;
+            }
+        }
+    }
 }
