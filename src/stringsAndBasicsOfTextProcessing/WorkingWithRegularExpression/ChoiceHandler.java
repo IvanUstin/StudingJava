@@ -12,15 +12,15 @@ public class ChoiceHandler {
     private String textPath;
     private String text;
     private Scanner scanner = new Scanner(System.in);
-    private String quantityOfParagraphs;
     private String PATH_TO_FILE = "[A-Z]:((\\\\)\\w+)+(\\\\)\\w+[.]txt";
 
-    public ChoiceHandler(String option, String optionOfTextInput) {
-        OPTION = Integer.parseInt(option);
-        OPTION_OF_TEXT_INPUT = Integer.parseInt(optionOfTextInput);
+    public ChoiceHandler(int option, int optionOfTextInput) {
+        OPTION = option;
+        OPTION_OF_TEXT_INPUT = optionOfTextInput;
     }
 
     public void handleChoices() throws IOException {
+        String quantityOfParagraphs;
         switch (OPTION_OF_TEXT_INPUT) {
             case 1 : {
                 System.out.println("Enter quantity of paragraphs:");

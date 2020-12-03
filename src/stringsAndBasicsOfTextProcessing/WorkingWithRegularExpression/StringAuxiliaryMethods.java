@@ -2,7 +2,10 @@ package stringsAndBasicsOfTextProcessing.WorkingWithRegularExpression;
 
 import stringsAndBasicsOfTextProcessing.WorkingWithAStringAsAStringOrStringBuilder.WorkingWithStringsMethods;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -107,23 +110,16 @@ public class StringAuxiliaryMethods {
         //divide text into paragraphs
         String[] paragraphs = text.split(COURAGE_RETURN);
         final int length = paragraphs.length;
-
-        //auxiliary array to shaping up the sequence of paragraphs bu quantity of sentences
-        String[][] quantityOfSentencesPerParagraph = new String[length][2];
-
-        //working array
-        for (int i = 0; i < length; i++) {
-            quantityOfSentencesPerParagraph[i][0] = String.valueOf(quantityOfSentences(paragraphs[i]));
-            quantityOfSentencesPerParagraph[i][1] = paragraphs[i];
+        List<Paragraph> paragraphsList = new ArrayList<>();
+        for (String s : paragraphs) {
+            paragraphsList.add(new Paragraph(s));
         }
-
-        //main logic
-        sortStrings(quantityOfSentencesPerParagraph, 0, length - 1, true);
+        Collections.sort(paragraphsList);
 
         //forming of the result
         StringBuilder sortedText = new StringBuilder();
-        for (String[] nextParagraph : quantityOfSentencesPerParagraph) {
-            sortedText.append(nextParagraph[1]);
+        for (Paragraph p : paragraphsList) {
+            sortedText.append(p.getContent());
             sortedText.append(COURAGE_RETURN);
         }
         return sortedText.toString();

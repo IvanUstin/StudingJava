@@ -2,20 +2,12 @@ package stringsAndBasicsOfTextProcessing.WorkingWithRegularExpression;
 
 import java.util.Scanner;
 
-public class Menu {
+public class MenuLogic {
 
     private String option;
     private String optionOfInputText;
 
-    public String getOption() {
-        return option;
-    }
-
-    public String getOptionOfInputText() {
-        return optionOfInputText;
-    }
-
-    public void start() {
+    public MenuOptions start() {
 
         //start menu
         System.out.println("Hello, choose an option by entering one of the following number:");
@@ -39,17 +31,26 @@ public class Menu {
         //check input
         inputCheck(optionOfInputText, scanner);
 
+        return new MenuOptions(Integer.parseInt(option), Integer.parseInt(optionOfInputText));
     }
 
     void inputCheck (String option, Scanner scanner) {
-        boolean firstCondition = !StringAuxiliaryMethods.isDigit(option);
-        boolean secondCondition = (StringAuxiliaryMethods.isDigit(option) && (Integer.parseInt(option) < 1 || Integer.parseInt(option) > 3));
+        boolean firstCondition = firstCondition(option);
+        boolean secondCondition = secondCondition(option);
         while (firstCondition || secondCondition) {
             System.out.println("Wrong input. Try again.");
             option = scanner.next();
-            firstCondition = !StringAuxiliaryMethods.isDigit(option);
-            secondCondition = (StringAuxiliaryMethods.isDigit(option) && (Integer.parseInt(option) < 1 || Integer.parseInt(option) > 3));
+            firstCondition = firstCondition(option);
+            secondCondition = secondCondition(option);
         }
+    }
+
+    boolean firstCondition (String option) {
+        return !StringAuxiliaryMethods.isDigit(option);
+    }
+
+    boolean secondCondition (String option) {
+        return (StringAuxiliaryMethods.isDigit(option) && (Integer.parseInt(option) < 1 || Integer.parseInt(option) > 3));
     }
 }
 
