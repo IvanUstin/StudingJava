@@ -9,7 +9,7 @@ public class StringsMethods {
     private final static String SPACE = " ";
 
     public static String wordTo_snake_case(String camelCase) {
-        String replacement = "_";
+        String replacement = UNDERSCORE;
         StringBuilder snakeCase = new StringBuilder(camelCase);
         Pattern upCase = Pattern.compile("[A-Z]");
         Matcher matcher = upCase.matcher(snakeCase);
