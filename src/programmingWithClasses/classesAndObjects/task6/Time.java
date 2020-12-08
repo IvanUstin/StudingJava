@@ -81,6 +81,29 @@ public class Time {
         }
     }
 
+    public void setHours(int hours) {
+        if (hours > 24) {
+            this.hours = 0;
+        } else {
+            this.hours = hours;
+        }
+    }
+
+    public void setMinutes(int minutes) {
+        if (minutes > 60) {
+            this.minutes = 0;
+        } else {
+            this.minutes = minutes;
+        }
+    }
+
+    public void setSeconds(int seconds) {
+        if (seconds > 60) {
+            this.seconds = 0;
+        } else {
+            this.seconds = seconds;
+        }
+    }
     public String toString() {
         return String.format((hours > 9 ? "%d" : "0%d") + ":" +  (minutes > 9 ? "%d" : "0%d") + ":" + (seconds > 9 ? "%d" : "0%d"),hours, minutes, seconds);
     }
