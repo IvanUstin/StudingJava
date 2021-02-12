@@ -6,6 +6,10 @@ package programmingWithClasses.classesAndObjects.task6;
 В случае недопустимых значений полей поле устанавливается в значение 0.
 Создать методы изменения времени на заданное количество часов, минут и секунд.
  */
+
+/**
+ *  в данном классе приводится демонстрация основных методов класса Time
+  */
 public class Task6 {
     public static void main(String[] args) {
         //set time

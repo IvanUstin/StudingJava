@@ -1,10 +1,25 @@
 package programmingWithClasses.classesAndObjects.task6;
 
+/**
+ * This class implements the mechanics of an electronic dial for displaying time in this format
+ * @author IvanUstin
+ * @version 1.2
+ * @since version 1.1
+ * @see programmingWithClasses.classesAndObjects.task6.Task6
+ */
 public class Time {
+
+
     private int hours;
     private int minutes;
     private int seconds;
 
+    /**
+     * Time is usual object constructor of class "Time"
+     * @param hours describes count of hours of current time
+     * @param minutes describes count of minutes of current time
+     * @param seconds describes count of seconds of current time
+     */
     public Time (int hours, int minutes, int seconds) {
         if (hours > 24) {
             this.hours = 0;
@@ -23,6 +38,10 @@ public class Time {
         }
     }
 
+    /**
+     * This method adds hours to the count
+     * @param hours means number of addition hours
+     */
     public void plusHours(int hours) {
         if (this.hours + hours <= 24) {
             this.hours += hours;

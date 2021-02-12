@@ -12,7 +12,7 @@ public class Dot {
         return y;
     }
 
-    Dot(double x, double y) {
+    public Dot(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -23,8 +23,14 @@ public class Dot {
     public static Dot test(double i) {
         double x = Math.random() * i - i / 2;
         double y = Math.random() * i - i / 2;
-        Dot dot = new Dot(x,y);
-//        System.out.println("x = " + x + "; y = " + y + ";");
-        return dot;
+        return new Dot(x,y);
+    }
+
+    @Override
+    public String toString() {
+        return "Dot{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
