@@ -7,9 +7,9 @@ import basic.firstTask.Dot;
  */
 public class Triangle {
 
-    private Dot A;
-    private Dot B;
-    private Dot C;
+    final private Dot A;
+    final private Dot B;
+    final private Dot C;
 
     /**
      * Usual constructor
