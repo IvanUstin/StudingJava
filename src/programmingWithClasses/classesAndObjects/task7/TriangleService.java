@@ -31,9 +31,9 @@ public class TriangleService {
      * @param tri given triangle
      */
     public static double perimeter(Triangle tri) {
-        double a = Math.sqrt(Math.pow(tri.getA().getX() - tri.getC().getX(), 2) + Math.pow(tri.getA().getY() - tri.getC().getY(), 2));
-        double b = Math.sqrt(Math.pow(tri.getB().getX() - tri.getC().getX(), 2) + Math.pow(tri.getB().getY() - tri.getC().getY(), 2));
-        double c = Math.sqrt(Math.pow(tri.getB().getX() - tri.getA().getX(), 2) + Math.pow(tri.getB().getY() - tri.getA().getY(), 2));
+        double a = side(tri.getA(),tri.getB());
+        double b = side(tri.getA(),tri.getC());
+        double c = side(tri.getC(),tri.getB());
         return a + b + c;
     }
 
@@ -44,5 +44,9 @@ public class TriangleService {
      */
     public static Dot crossingMedians(Triangle tri) {
         return new Dot((tri.getA().getX() + tri.getB().getX() + tri.getC().getX()) / 3, (tri.getA().getY() + tri.getB().getY() + tri.getC().getY()) / 3);
+    }
+
+    public static double side(Dot a, Dot b) {
+        return Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
     }
 }
